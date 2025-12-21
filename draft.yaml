@@ -1,0 +1,34 @@
+models:
+  Category:
+    name: string
+    description: text nullable
+    relationships:
+      hasMany: Product
+
+  Product:
+    name: string
+    description: text
+    price: decimal:8,2
+    stock: integer
+    category_id: id
+    relationships:
+      belongsTo: Category
+      belongsToMany: Order
+
+  Order:
+    user_id: id
+    total_price: decimal:8,2
+    status: string
+    relationships:
+      belongsTo: User
+      belongsToMany: Product
+
+controllers:
+  Category:
+    resource
+
+  Product:
+    resource
+
+  Order:
+    resource
