@@ -17,7 +17,8 @@ Route::resource('products', ProductController::class);
 Route::resource('orders', OrderController::class);
 
 // 3 rute (public ili ne-admin korisnik) za use cases ***
-Route::post('/cart/add/{product}', [OrderController::class, 'addToCart']);
-Route::post('/checkout', [OrderController::class, 'checkout']);
-Route::get('/my-orders', [OrderController::class, 'myOrders']);
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/my-orders', [OrderController::class, 'index']);
+
 

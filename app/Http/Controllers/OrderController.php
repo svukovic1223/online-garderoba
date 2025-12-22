@@ -70,4 +70,5 @@ class OrderController extends Controller
 
         return redirect()->route('orders.index');
     }
+
 }
