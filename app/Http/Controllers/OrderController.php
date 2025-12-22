@@ -27,11 +27,18 @@ class OrderController extends Controller
 
     public function store(OrderStoreRequest $request)
     {
-        $order = Order::create($request->validated());
+        // $order = Order::create($request->validated());
 
-        $request->session()->flash('order.id', $order->id);
+        // $request->session()->flash('order.id', $order->id);
 
-        return redirect()->route('orders.index');
+        // return redirect()->route('orders.index');
+        Order::create([
+            'user_id' => $request->user_id,
+            'total_price' => $request->total_price,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back();
     }
 
     public function show(Request $request, Order $order)
