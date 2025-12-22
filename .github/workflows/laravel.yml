@@ -1,0 +1,47 @@
+name: Laravel CI
+
+on: 
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  testiranje:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Preuzimanje repozitorijuma
+        uses: actions/checkout@v4
+
+      - name: Podesavanje PHP-a
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: json, mbstring, bcmath, curl, sqlite3
+          coverage: none
+
+      - name: Kesiranje composer zavisnosti
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Instalacija composer paketa
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Kopiranje .env fajla
+        run: cp .env.example .env
+
+      - name: Generisanje ključa aplikacije
+        run: php artisan key:generate
+
+      - name: Provera Pint stilova koda
+        run: ./vendor/bin/pint --test
+
+      - name: Pokretanje testova
+        run: php artisan test

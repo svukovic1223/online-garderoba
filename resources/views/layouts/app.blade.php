@@ -9,7 +9,6 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
         <div class="container">
-            <!-- <a class="navbar-brand" href="{{ url('/') }}">Online Shop</a> -->
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ route('products.index') }}">Proizvodi</a></li>
