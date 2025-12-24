@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
 use App\Models\Product;
+use PHPUnit\Framework\TestCase;
 
 class ProductModelTest extends TestCase
 {
@@ -12,11 +12,11 @@ class ProductModelTest extends TestCase
      */
     public function test_example(): void
     {
-        $product = new Product();
+        $product = new Product;
 
         $this->assertTrue(
             method_exists($product, 'category'),
-            "Product nema definisanu category relaciju"
+            'Product nema definisanu category relaciju'
         );
     }
 }
